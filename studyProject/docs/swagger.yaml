@@ -1,0 +1,483 @@
+basePath: /
+definitions:
+  entity.Chapter:
+    properties:
+      course:
+        $ref: '#/definitions/entity.Course'
+      course_id:
+        type: integer
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      order:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  entity.Course:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  entity.Lesson:
+    properties:
+      chapter:
+        $ref: '#/definitions/entity.Chapter'
+      chapter_id:
+        type: integer
+      content:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      order:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: REST API for courses, chapters and lessons
+  title: Study Project API
+  version: "1.0"
+paths:
+  /chapters:
+    delete:
+      description: Delete chapter by id
+      parameters:
+      - description: Chapter ID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete chapter
+      tags:
+      - chapters
+    get:
+      description: Get chapter by id or all chapters
+      parameters:
+      - description: Chapter ID
+        in: query
+        name: id
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Chapter'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get chapter
+      tags:
+      - chapters
+    post:
+      consumes:
+      - application/json
+      description: Create new chapter
+      parameters:
+      - description: Chapter
+        in: body
+        name: chapter
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Chapter'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create chapter
+      tags:
+      - chapters
+    put:
+      consumes:
+      - application/json
+      description: Update existing chapter
+      parameters:
+      - description: Updated Chapter
+        in: body
+        name: chapter
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Chapter'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update chapter
+      tags:
+      - chapters
+  /courses:
+    delete:
+      description: Delete course by id
+      parameters:
+      - description: Course ID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete course
+      tags:
+      - courses
+    get:
+      description: Get course by id or all courses
+      parameters:
+      - description: Course ID
+        in: query
+        name: id
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Course'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get course
+      tags:
+      - courses
+    post:
+      consumes:
+      - application/json
+      description: Create new course
+      parameters:
+      - description: Course
+        in: body
+        name: course
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Course'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create course
+      tags:
+      - courses
+    put:
+      consumes:
+      - application/json
+      description: Update existing course
+      parameters:
+      - description: Updated Course
+        in: body
+        name: course
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Course'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update course
+      tags:
+      - courses
+  /lessons:
+    delete:
+      description: Delete lesson by id
+      parameters:
+      - description: Lesson ID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete lesson
+      tags:
+      - lessons
+    get:
+      description: Get lesson by id or all lessons
+      parameters:
+      - description: Lesson ID
+        in: query
+        name: id
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Lesson'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get lesson
+      tags:
+      - lessons
+    post:
+      consumes:
+      - application/json
+      description: Create new lesson
+      parameters:
+      - description: Lesson
+        in: body
+        name: lesson
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Lesson'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create lesson
+      tags:
+      - lessons
+    put:
+      consumes:
+      - application/json
+      description: Update existing lesson
+      parameters:
+      - description: Updated Lesson
+        in: body
+        name: lesson
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Lesson'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update lesson
+      tags:
+      - lessons
+swagger: "2.0"
